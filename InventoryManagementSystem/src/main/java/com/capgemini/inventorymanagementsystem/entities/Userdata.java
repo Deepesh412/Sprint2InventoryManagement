@@ -24,12 +24,16 @@ public class Userdata implements Serializable{
 	private String userpassword;
 	
 	@Column(name="user_phone")
-	private int userphone;
+	private long userphone;
 	
 	@Column(name="user_email")
 	private String useremail;
+	
+	public Userdata() {
+		
+	}
 
-	public Userdata(int userid, String username, String usertype, String userpassword, int userphone,
+	public Userdata(int userid, String username, String usertype, String userpassword, long userphone,
 			String useremail) {
 		super();
 		this.userid = userid;
@@ -72,11 +76,11 @@ public class Userdata implements Serializable{
 		this.userpassword = userpassword;
 	}
 
-	public int getUserphone() {
+	public long getUserphone() {
 		return userphone;
 	}
 
-	public void setUserphone(int userphone) {
+	public void setUserphone(long userphone) {
 		this.userphone = userphone;
 	}
 
@@ -87,7 +91,7 @@ public class Userdata implements Serializable{
 	public void setUseremail(String useremail) {
 		this.useremail = useremail;
 	}
-	
+
 	
 	
 }

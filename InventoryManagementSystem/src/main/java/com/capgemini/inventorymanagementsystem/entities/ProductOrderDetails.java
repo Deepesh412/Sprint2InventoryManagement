@@ -20,8 +20,8 @@ public class ProductOrderDetails implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "order_id")
 	private int orderId;
-	@Column(name = "price_per_unit")
-	private double pricePerUnit;
+	@Column(name = "quantity_unit")
+	private int quantityUnit;
 	@Column(name = "total_price")
 	private double totalPrice;
 	@Column(name = "order_date")
@@ -36,12 +36,8 @@ public class ProductOrderDetails implements Serializable {
     private DistributorDetails distributor;
 	
 	@OneToOne
-	@JoinColumn(name="item_name", referencedColumnName="item_name")
-	private PlaceAnPOrder itemname;
-	
-	@OneToOne
-	@JoinColumn(name="quantity_unit", referencedColumnName="quantity_unit")
-	private PlaceAnPOrder quantityunit;
+	@JoinColumn(name="product_id", referencedColumnName="product_id")
+	private ProductStock productid;
 	
 	
 	
@@ -52,18 +48,17 @@ public class ProductOrderDetails implements Serializable {
 
 
 
-	public ProductOrderDetails(int orderId, double pricePerUnit, double totalPrice, Date orderDate, Date deliveryDate,
-			String deliveryStatus, DistributorDetails distributor, PlaceAnPOrder itemname, PlaceAnPOrder quantityunit) {
+	public ProductOrderDetails(int orderId, int quantityUnit, double totalPrice, Date orderDate, Date deliveryDate,
+			String deliveryStatus, DistributorDetails distributor, ProductStock productid) {
 		super();
 		this.orderId = orderId;
-		this.pricePerUnit = pricePerUnit;
+		this.quantityUnit = quantityUnit;
 		this.totalPrice = totalPrice;
 		this.orderDate = orderDate;
 		this.deliveryDate = deliveryDate;
 		this.deliveryStatus = deliveryStatus;
 		this.distributor = distributor;
-		this.itemname = itemname;
-		this.quantityunit = quantityunit;
+		this.productid = productid;
 	}
 
 
@@ -80,14 +75,14 @@ public class ProductOrderDetails implements Serializable {
 
 
 
-	public double getPricePerUnit() {
-		return pricePerUnit;
+	public int getQuantityUnit() {
+		return quantityUnit;
 	}
 
 
 
-	public void setPricePerUnit(double pricePerUnit) {
-		this.pricePerUnit = pricePerUnit;
+	public void setQuantityUnit(int quantityUnit) {
+		this.quantityUnit = quantityUnit;
 	}
 
 
@@ -152,30 +147,17 @@ public class ProductOrderDetails implements Serializable {
 
 
 
-	public PlaceAnPOrder getItemname() {
-		return itemname;
+	public ProductStock getProductid() {
+		return productid;
 	}
 
 
 
-	public void setItemname(PlaceAnPOrder itemname) {
-		this.itemname = itemname;
+	public void setProductid(ProductStock productid) {
+		this.productid = productid;
 	}
 
 
-
-	public PlaceAnPOrder getQuantityunit() {
-		return quantityunit;
-	}
-
-
-
-	public void setQuantityunit(PlaceAnPOrder quantityunit) {
-		this.quantityunit = quantityunit;
-	}
-
-
-
-	
+   
 }
 

@@ -20,8 +20,8 @@ public class RawMaterialOrderDetails implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "order_id")
 	private int orderId;
-	@Column(name = "price_per_unit")
-	private double pricePerUnit;
+	@Column(name = "quantity_unit")
+	private int quantityUnit;
 	@Column(name = "total_price")
 	private double totalPrice;
 	@Column(name = "order_date")
@@ -36,31 +36,25 @@ public class RawMaterialOrderDetails implements Serializable {
 	private SupplierDetails supplierId;
 	
 	@OneToOne
-	@JoinColumn(name="item_name", referencedColumnName="item_name")
-	private PlaceAnRMOrder itemname;
-	
-	@OneToOne
-	@JoinColumn(name="quantity_unit", referencedColumnName="quantity_unit")
-	private PlaceAnRMOrder quantityunit;
+	@JoinColumn(name="raw_material_id", referencedColumnName="raw_material_id")
+	private RawMaterialStock rawmaterialId;
 	
 	public RawMaterialOrderDetails()
 	{
 		
 	}
 
-	public RawMaterialOrderDetails(int orderId, double pricePerUnit, double totalPrice, Date orderDate,
-			Date deliveryDate, String deliveryStatus, SupplierDetails supplierId, PlaceAnRMOrder itemname,
-			PlaceAnRMOrder quantityunit) {
+	public RawMaterialOrderDetails(int orderId, int quantityUnit, double totalPrice, Date orderDate, Date deliveryDate,
+			String deliveryStatus, SupplierDetails supplierId, RawMaterialStock rawmaterialId) {
 		super();
 		this.orderId = orderId;
-		this.pricePerUnit = pricePerUnit;
+		this.quantityUnit = quantityUnit;
 		this.totalPrice = totalPrice;
 		this.orderDate = orderDate;
 		this.deliveryDate = deliveryDate;
 		this.deliveryStatus = deliveryStatus;
 		this.supplierId = supplierId;
-		this.itemname = itemname;
-		this.quantityunit = quantityunit;
+		this.rawmaterialId = rawmaterialId;
 	}
 
 	public int getOrderId() {
@@ -71,12 +65,12 @@ public class RawMaterialOrderDetails implements Serializable {
 		this.orderId = orderId;
 	}
 
-	public double getPricePerUnit() {
-		return pricePerUnit;
+	public int getQuantityUnit() {
+		return quantityUnit;
 	}
 
-	public void setPricePerUnit(double pricePerUnit) {
-		this.pricePerUnit = pricePerUnit;
+	public void setQuantityUnit(int quantityUnit) {
+		this.quantityUnit = quantityUnit;
 	}
 
 	public double getTotalPrice() {
@@ -119,22 +113,13 @@ public class RawMaterialOrderDetails implements Serializable {
 		this.supplierId = supplierId;
 	}
 
-	public PlaceAnRMOrder getItemname() {
-		return itemname;
+	public RawMaterialStock getRawmaterialId() {
+		return rawmaterialId;
 	}
 
-	public void setItemname(PlaceAnRMOrder itemname) {
-		this.itemname = itemname;
+	public void setRawmaterialId(RawMaterialStock rawmaterialId) {
+		this.rawmaterialId = rawmaterialId;
 	}
 
-	public PlaceAnRMOrder getQuantityunit() {
-		return quantityunit;
-	}
-
-	public void setQuantityunit(PlaceAnRMOrder quantityunit) {
-		this.quantityunit = quantityunit;
-	}
-
-	
 	
 }

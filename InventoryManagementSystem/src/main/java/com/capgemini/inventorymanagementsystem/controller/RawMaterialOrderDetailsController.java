@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capgemini.inventorymanagementsystem.entities.PlaceAnRMOrder;
 import com.capgemini.inventorymanagementsystem.entities.RawMaterialOrderDetails;
 import com.capgemini.inventorymanagementsystem.entities.RawMaterialStock;
 import com.capgemini.inventorymanagementsystem.service.RawMaterialOrderDetailsService;
@@ -22,10 +21,10 @@ public class RawMaterialOrderDetailsController {
 	@Autowired
 	RawMaterialOrderDetailsService orderservice;
 	
-	@PostMapping(value = "/addrawmaterialorderdetails")
-	public RawMaterialOrderDetails addRawMaterialOrderDetails (@RequestBody RawMaterialOrderDetails rmo, PlaceAnRMOrder plo, RawMaterialStock rms)
+	@PostMapping(value = "/placerawmaterialorder")
+	public RawMaterialOrderDetails addRawMaterialOrderDetails (@RequestBody RawMaterialOrderDetails rmo, RawMaterialStock rms)
 	{
-		return orderservice.addRawMaterialOrderDetails(rmo, plo, rms);		
+		return orderservice.addRawMaterialOrderDetails(rmo,rms);		
 	}
 	
 	

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.inventorymanagementsystem.dao.RawMaterialOrderDetailsRepository;
-import com.capgemini.inventorymanagementsystem.entities.PlaceAnRMOrder;
 import com.capgemini.inventorymanagementsystem.entities.RawMaterialOrderDetails;
 import com.capgemini.inventorymanagementsystem.entities.RawMaterialStock;
 
@@ -23,12 +22,13 @@ public class RawMaterialOrderDetailsServiceImpl implements RawMaterialOrderDetai
 	
 	
 	@Override
-	public RawMaterialOrderDetails addRawMaterialOrderDetails(RawMaterialOrderDetails rmo, PlaceAnRMOrder plo, RawMaterialStock r) {
-		int quan = plo.getQuantityUnit();
-		double unitprice = r.getPricePerUnit();
-		rmo.setTotalPrice(unitprice*quan);
+	public RawMaterialOrderDetails addRawMaterialOrderDetails(RawMaterialOrderDetails rmo, RawMaterialStock rms) {
 		
-		rmo.setPricePerUnit(r.getPricePerUnit());
+		int quan = rmo.getQuantityUnit();
+		double unit = rms.getPricePerUnit();
+		rmo.setTotalPrice(quan*unit);
+		
+		
 		Date dateofOrder = new Date();
 		Date dateofOrder1 = new Date(dateofOrder.getTime());
 		rmo.setOrderDate(dateofOrder1);
@@ -40,9 +40,9 @@ public class RawMaterialOrderDetailsServiceImpl implements RawMaterialOrderDetai
 		Date dateofdel = new Date(modifiedDate.getTime());
 		rmo.setDeliveryDate(dateofdel);
 		
-		rmo.setItemname(plo);
+		
 		rmo.setDeliveryStatus("Not dispatched");
-		rmo.setQuantityunit(plo);
+
 		
 		return rdao.save(rmo);
 	}
