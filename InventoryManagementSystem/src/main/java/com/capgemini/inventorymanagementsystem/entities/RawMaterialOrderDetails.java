@@ -1,5 +1,6 @@
 package com.capgemini.inventorymanagementsystem.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "rawmaterialorderdetails")
-public class RawMaterialOrderDetails {
+public class RawMaterialOrderDetails implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -36,11 +37,11 @@ public class RawMaterialOrderDetails {
 	
 	@OneToOne
 	@JoinColumn(name="item_name", referencedColumnName="item_name")
-	private PlaceAnRMOrder itemName;
+	private PlaceAnRMOrder itemname;
 	
 	@OneToOne
 	@JoinColumn(name="quantity_unit", referencedColumnName="quantity_unit")
-	private PlaceAnRMOrder quantityUnit;
+	private PlaceAnRMOrder quantityunit;
 	
 	public RawMaterialOrderDetails()
 	{
@@ -48,8 +49,8 @@ public class RawMaterialOrderDetails {
 	}
 
 	public RawMaterialOrderDetails(int orderId, double pricePerUnit, double totalPrice, Date orderDate,
-			Date deliveryDate, String deliveryStatus, SupplierDetails supplierId, PlaceAnRMOrder itemName,
-			PlaceAnRMOrder quantityUnit) {
+			Date deliveryDate, String deliveryStatus, SupplierDetails supplierId, PlaceAnRMOrder itemname,
+			PlaceAnRMOrder quantityunit) {
 		super();
 		this.orderId = orderId;
 		this.pricePerUnit = pricePerUnit;
@@ -58,8 +59,8 @@ public class RawMaterialOrderDetails {
 		this.deliveryDate = deliveryDate;
 		this.deliveryStatus = deliveryStatus;
 		this.supplierId = supplierId;
-		this.itemName = itemName;
-		this.quantityUnit = quantityUnit;
+		this.itemname = itemname;
+		this.quantityunit = quantityunit;
 	}
 
 	public int getOrderId() {
@@ -118,21 +119,22 @@ public class RawMaterialOrderDetails {
 		this.supplierId = supplierId;
 	}
 
-	public PlaceAnRMOrder getItemName() {
-		return itemName;
+	public PlaceAnRMOrder getItemname() {
+		return itemname;
 	}
 
-	public void setItemName(PlaceAnRMOrder itemName) {
-		this.itemName = itemName;
+	public void setItemname(PlaceAnRMOrder itemname) {
+		this.itemname = itemname;
 	}
 
-	public PlaceAnRMOrder getQuantityUnit() {
-		return quantityUnit;
+	public PlaceAnRMOrder getQuantityunit() {
+		return quantityunit;
 	}
 
-	public void setQuantityUnit(PlaceAnRMOrder quantityUnit) {
-		this.quantityUnit = quantityUnit;
+	public void setQuantityunit(PlaceAnRMOrder quantityunit) {
+		this.quantityunit = quantityunit;
 	}
 
+	
 	
 }

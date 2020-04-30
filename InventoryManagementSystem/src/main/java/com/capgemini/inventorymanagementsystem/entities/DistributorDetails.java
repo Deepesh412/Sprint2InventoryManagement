@@ -1,5 +1,7 @@
 package com.capgemini.inventorymanagementsystem.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,14 +9,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "distributordetails")
-public class DistributorDetails {
+public class DistributorDetails implements Serializable{
 	@Id
 	@Column(name ="distributor_id")
 	private int distributorId;
 	@Column(name = "distributor_name")
 	private String distributorName;
-	@Column(name = "product_name")
-	private String productName;
 	@Column(name = "address")
 	private String address;
 	@Column(name = "phone_number")
@@ -27,12 +27,11 @@ public class DistributorDetails {
 		
 	}
 
-	public DistributorDetails(int distributorId, String distributorName, String productName, String address,
-			long phonenumber, String emailId) {
+	public DistributorDetails(int distributorId, String distributorName, String address, long phonenumber,
+			String emailId) {
 		super();
 		this.distributorId = distributorId;
 		this.distributorName = distributorName;
-		this.productName = productName;
 		this.address = address;
 		this.phonenumber = phonenumber;
 		this.emailId = emailId;
@@ -52,14 +51,6 @@ public class DistributorDetails {
 
 	public void setDistributorName(String distributorName) {
 		this.distributorName = distributorName;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
 	}
 
 	public String getAddress() {
@@ -85,5 +76,6 @@ public class DistributorDetails {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	
+
+
 }

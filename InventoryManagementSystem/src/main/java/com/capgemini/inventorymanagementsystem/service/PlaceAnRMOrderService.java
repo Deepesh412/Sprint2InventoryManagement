@@ -4,5 +4,5 @@ import com.capgemini.inventorymanagementsystem.entities.PlaceAnRMOrder;
 
 public interface PlaceAnRMOrderService {
 
-	public PlaceAnRMOrder PlaceRMorder(PlaceAnRMOrder plo);
+	public PlaceAnRMOrder placeRMorder(PlaceAnRMOrder plo);
 }

@@ -22,9 +22,9 @@ public class PlaceAnRMOrderController {
 	}
 	
 	@PostMapping(value = "/placeanorder")
-	public PlaceAnRMOrder PlaceRMorder (@RequestBody PlaceAnRMOrder plo)
+	public PlaceAnRMOrder placeRMorder (@RequestBody PlaceAnRMOrder plo)
 	{
-		return placeservice.PlaceRMorder(plo);	
+		return placeservice.placeRMorder(plo);
 	}
 
 }

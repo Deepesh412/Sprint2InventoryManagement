@@ -40,7 +40,6 @@ public class ProductStockServiceImpl implements ProductStockService {
 			  ps.setManufacturingDate(p.getManufacturingDate());
 			  ps.setExpiryDate(p.getExpiryDate());
 			  ps.setPricePerUnit(p.getPricePerUnit());
-			  ps.setQuantityUnit(p.getQuantityUnit());
 			  
 		  }
 		  return pdao.save(ps);

@@ -1,9 +1,12 @@
 package com.capgemini.inventorymanagementsystem.entities;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -11,23 +14,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "productorderdetails")
-public class ProductOrderDetails {
+public class ProductOrderDetails implements Serializable {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "order_id")
 	private int orderId;
-	@Column(name = "item_name")
-	private String itemName;
-	@Column(name = "quantity_unit")
-	private int quantityUnit;
 	@Column(name = "price_per_unit")
 	private double pricePerUnit;
 	@Column(name = "total_price")
 	private double totalPrice;
 	@Column(name = "order_date")
-	LocalDate orderDate;
+	private Date orderDate;
 	@Column(name = "delivery_date")
-	LocalDate deliveryDate;
+	private Date deliveryDate;
 	@Column(name = "delivery_status")
 	private String deliveryStatus;
 	
@@ -35,98 +35,147 @@ public class ProductOrderDetails {
 	@JoinColumn(name = "distributor", referencedColumnName = "distributor_id")
     private DistributorDetails distributor;
 	
+	@OneToOne
+	@JoinColumn(name="item_name", referencedColumnName="item_name")
+	private PlaceAnPOrder itemname;
+	
+	@OneToOne
+	@JoinColumn(name="quantity_unit", referencedColumnName="quantity_unit")
+	private PlaceAnPOrder quantityunit;
+	
+	
+	
 	public ProductOrderDetails()
 	{
 		
 	}
 
-	public ProductOrderDetails(int orderId, String itemName, int quantityUnit, double pricePerUnit, double totalPrice,
-			LocalDate orderDate, LocalDate deliveryDate, String deliveryStatus, DistributorDetails distributor) {
+
+
+	public ProductOrderDetails(int orderId, double pricePerUnit, double totalPrice, Date orderDate, Date deliveryDate,
+			String deliveryStatus, DistributorDetails distributor, PlaceAnPOrder itemname, PlaceAnPOrder quantityunit) {
 		super();
 		this.orderId = orderId;
-		this.itemName = itemName;
-		this.quantityUnit = quantityUnit;
 		this.pricePerUnit = pricePerUnit;
 		this.totalPrice = totalPrice;
 		this.orderDate = orderDate;
 		this.deliveryDate = deliveryDate;
 		this.deliveryStatus = deliveryStatus;
 		this.distributor = distributor;
+		this.itemname = itemname;
+		this.quantityunit = quantityunit;
 	}
+
+
 
 	public int getOrderId() {
 		return orderId;
 	}
 
+
+
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
 
-	public String getItemName() {
-		return itemName;
-	}
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-
-	public int getQuantityUnit() {
-		return quantityUnit;
-	}
-
-	public void setQuantityUnit(int quantityUnit) {
-		this.quantityUnit = quantityUnit;
-	}
 
 	public double getPricePerUnit() {
 		return pricePerUnit;
 	}
 
+
+
 	public void setPricePerUnit(double pricePerUnit) {
 		this.pricePerUnit = pricePerUnit;
 	}
+
+
 
 	public double getTotalPrice() {
 		return totalPrice;
 	}
 
+
+
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
-	public LocalDate getOrderDate() {
+
+
+	public Date getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(LocalDate orderDate) {
+
+
+	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
 
-	public LocalDate getDeliveryDate() {
+
+
+	public Date getDeliveryDate() {
 		return deliveryDate;
 	}
 
-	public void setDeliveryDate(LocalDate deliveryDate) {
+
+
+	public void setDeliveryDate(Date deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
+
+
 
 	public String getDeliveryStatus() {
 		return deliveryStatus;
 	}
 
+
+
 	public void setDeliveryStatus(String deliveryStatus) {
 		this.deliveryStatus = deliveryStatus;
 	}
+
+
 
 	public DistributorDetails getDistributor() {
 		return distributor;
 	}
 
+
+
 	public void setDistributor(DistributorDetails distributor) {
 		this.distributor = distributor;
 	}
 
-	
+
+
+	public PlaceAnPOrder getItemname() {
+		return itemname;
+	}
+
+
+
+	public void setItemname(PlaceAnPOrder itemname) {
+		this.itemname = itemname;
+	}
+
+
+
+	public PlaceAnPOrder getQuantityunit() {
+		return quantityunit;
+	}
+
+
+
+	public void setQuantityunit(PlaceAnPOrder quantityunit) {
+		this.quantityunit = quantityunit;
+	}
+
+
+
 	
 }
 

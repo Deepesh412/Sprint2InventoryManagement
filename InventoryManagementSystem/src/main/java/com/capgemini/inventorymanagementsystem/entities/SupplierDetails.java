@@ -1,5 +1,7 @@
 package com.capgemini.inventorymanagementsystem.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "supplierdetails")
-public class SupplierDetails {
+public class SupplierDetails implements Serializable {
 	@Id
 	@Column(name ="supplier_id")
 	private int supplierId;

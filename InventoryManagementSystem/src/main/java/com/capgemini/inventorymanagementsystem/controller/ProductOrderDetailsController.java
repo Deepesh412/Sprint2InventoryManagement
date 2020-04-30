@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capgemini.inventorymanagementsystem.entities.PlaceAnPOrder;
 import com.capgemini.inventorymanagementsystem.entities.ProductOrderDetails;
+import com.capgemini.inventorymanagementsystem.entities.ProductStock;
 import com.capgemini.inventorymanagementsystem.service.ProductOrderDetailsService;
 
 @RestController
@@ -23,9 +25,9 @@ public class ProductOrderDetailsController {
 	ProductOrderDetailsService orderservice;
 	
 	@PostMapping(value = "/addproductorderdetails")
-	public ProductOrderDetails addProductOrderDetails (@RequestBody ProductOrderDetails po)
+	public ProductOrderDetails addProductOrderDetails (@RequestBody ProductOrderDetails po, ProductStock p, PlaceAnPOrder plp)
 	{
-		return orderservice.addProductOrderDetails(po);		
+		return orderservice.addProductOrderDetails(po,p,plp);		
 	}
 	
 	
@@ -43,7 +45,7 @@ public class ProductOrderDetailsController {
     }
 	
 	
-	 @DeleteMapping("/deleterawmaterialorderdetail/{orderId}")
+	/* @DeleteMapping("/deleterawmaterialorderdetail/{orderId}")
      public String deleteProductOrderDetails(@PathVariable int orderId)
      {
     	 orderservice.deleteProductOrderDetails(orderId);
@@ -55,6 +57,6 @@ public class ProductOrderDetailsController {
      public ProductOrderDetails modifyProductOrderDetails(@RequestBody ProductOrderDetails po)
      {
     	 return orderservice.modifyProductOrderDetails(po);
-     }
+     }*/
 }
 

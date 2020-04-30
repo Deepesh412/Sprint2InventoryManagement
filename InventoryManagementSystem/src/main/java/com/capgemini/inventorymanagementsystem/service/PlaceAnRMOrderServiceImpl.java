@@ -17,7 +17,7 @@ public class PlaceAnRMOrderServiceImpl implements PlaceAnRMOrderService {
 	
 	
 	@Override
-	public PlaceAnRMOrder PlaceRMorder(PlaceAnRMOrder plo) {
+	public PlaceAnRMOrder placeRMorder(PlaceAnRMOrder plo) {
 		
 		return pldao.save(plo);
 	}

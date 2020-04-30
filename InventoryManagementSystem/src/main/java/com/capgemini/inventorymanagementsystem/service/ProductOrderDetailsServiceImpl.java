@@ -1,5 +1,7 @@
 package com.capgemini.inventorymanagementsystem.service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.inventorymanagementsystem.dao.ProductOrderDetailsRepository;
+import com.capgemini.inventorymanagementsystem.entities.PlaceAnPOrder;
 import com.capgemini.inventorymanagementsystem.entities.ProductOrderDetails;
+import com.capgemini.inventorymanagementsystem.entities.ProductStock;
 
 @Service
 @Transactional
@@ -19,10 +23,31 @@ public class ProductOrderDetailsServiceImpl implements ProductOrderDetailsServic
 	ProductOrderDetailsRepository pdao;
 	
 	@Override
-	public ProductOrderDetails addProductOrderDetails(ProductOrderDetails po) {
+	public ProductOrderDetails addProductOrderDetails(ProductOrderDetails po, ProductStock p, PlaceAnPOrder plp) {
+		
+		int quan = plp.getQuantityUnit();
+		double uniprice = p.getPricePerUnit();
+		po.setTotalPrice(uniprice*quan);
+		
+		po.setPricePerUnit(p.getPricePerUnit());
+		Date dateofOrder = new Date();
+		Date dateofOrder1 = new Date(dateofOrder.getTime());
+		po.setOrderDate(dateofOrder1);
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateofOrder);
+		cal.add(Calendar.DATE,4);
+		Date modifiedDate  = cal.getTime();
+		Date dateofdel = new Date(modifiedDate.getTime());
+		po.setDeliveryDate(dateofdel);
+		
+		po.setItemname(plp);
+		po.setDeliveryStatus("Not dispatched");
+		po.setQuantityunit(plp);
 		
 		return pdao.save(po);
 	}
+
 
 	@Override
 	public ProductOrderDetails viewProductOrderDetails(int orderId) {
@@ -36,7 +61,8 @@ public class ProductOrderDetailsServiceImpl implements ProductOrderDetailsServic
 		return pdao.findAll();
 	}
 
-	@Override
+	
+	/*@Override
 	public ProductOrderDetails modifyProductOrderDetails(ProductOrderDetails po) {
 		
 		ProductOrderDetails pd = pdao.findById(po.getOrderId()).get();
@@ -57,6 +83,6 @@ public class ProductOrderDetailsServiceImpl implements ProductOrderDetailsServic
 	public void deleteProductOrderDetails(int orderId) {
 
 		pdao.deleteById(orderId);
-	}
+	}*/
 
 }
