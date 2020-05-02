@@ -22,10 +22,10 @@ public class RawMaterialOrderDetailsServiceImpl implements RawMaterialOrderDetai
 	
 	
 	@Override
-	public RawMaterialOrderDetails addRawMaterialOrderDetails(RawMaterialOrderDetails rmo, RawMaterialStock rms) {
-		
+	public RawMaterialOrderDetails addRawMaterialOrderDetails(RawMaterialOrderDetails rmo) {
+	
 		int quan = rmo.getQuantityUnit();
-		double unit = rms.getPricePerUnit();
+		double unit = rmo.getPricePerUnit();
 		rmo.setTotalPrice(quan*unit);
 		
 		

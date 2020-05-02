@@ -10,15 +10,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "supplierdetails")
 public class SupplierDetails implements Serializable {
+	
 	@Id
 	@Column(name ="supplier_id")
 	private int supplierId;
+	
 	@Column(name = "supplier_name")
 	private String supplierName;
+	
 	@Column(name = "address")
 	private String address;
+	
 	@Column(name = "phone_number")
 	private long phonenumber;
+	
 	@Column(name = "email_id")
 	private String emailId;
     

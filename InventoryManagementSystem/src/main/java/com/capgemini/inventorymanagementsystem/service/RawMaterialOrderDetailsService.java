@@ -9,9 +9,9 @@ public interface RawMaterialOrderDetailsService {
 	
 	 
 	
-     public RawMaterialOrderDetails addRawMaterialOrderDetails( RawMaterialOrderDetails rmo, RawMaterialStock rms);
+     public RawMaterialOrderDetails addRawMaterialOrderDetails( RawMaterialOrderDetails rmo);
 
-	  public RawMaterialOrderDetails viewRawMaterialOrderDetails(int orderId);
+	 public RawMaterialOrderDetails viewRawMaterialOrderDetails(int orderId);
 	 
 	 public List<RawMaterialOrderDetails> viewRawMaterialOrderDetails();
 	 

@@ -10,4 +10,5 @@ import com.capgemini.inventorymanagementsystem.entities.RawMaterialOrderDetails;
 @Repository
 public interface RawMaterialOrderDetailsRepository extends JpaRepository<RawMaterialOrderDetails,Serializable>{
 
+	
 }

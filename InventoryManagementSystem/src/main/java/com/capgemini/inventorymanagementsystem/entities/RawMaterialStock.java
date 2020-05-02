@@ -1,7 +1,7 @@
 package com.capgemini.inventorymanagementsystem.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,24 +11,29 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "rawmaterialstock")
 public class RawMaterialStock implements Serializable {
+	
 	@Id
 	@Column(name = "raw_material_id")
 	private int rawmaterialId;
+	
 	@Column(name = "item_name")
 	private String itemName;
+	
 	@Column(name = "price_per_unit")
 	private double pricePerUnit;
+	
 	@Column(name="manufacturing_date")
-	LocalDate manufacturingDate;
+	private Date manufacturingDate;
+	
 	@Column(name="expiry_date")
-	LocalDate expiryDate;
+	private Date expiryDate;
 	
 public RawMaterialStock() {
 		
 	}
 
-public RawMaterialStock(int rawmaterialId, String itemName, double pricePerUnit,
-		LocalDate manufacturingDate, LocalDate expiryDate) {
+public RawMaterialStock(int rawmaterialId, String itemName, double pricePerUnit, Date manufacturingDate,
+		Date expiryDate) {
 	super();
 	this.rawmaterialId = rawmaterialId;
 	this.itemName = itemName;
@@ -36,7 +41,6 @@ public RawMaterialStock(int rawmaterialId, String itemName, double pricePerUnit,
 	this.manufacturingDate = manufacturingDate;
 	this.expiryDate = expiryDate;
 }
-
 
 public int getRawmaterialId() {
 	return rawmaterialId;
@@ -62,22 +66,22 @@ public void setPricePerUnit(double pricePerUnit) {
 	this.pricePerUnit = pricePerUnit;
 }
 
-public LocalDate getManufacturingDate() {
+public Date getManufacturingDate() {
 	return manufacturingDate;
 }
 
-public void setManufacturingDate(LocalDate manufacturingDate) {
+public void setManufacturingDate(Date manufacturingDate) {
 	this.manufacturingDate = manufacturingDate;
 }
 
-public LocalDate getExpiryDate() {
+public Date getExpiryDate() {
 	return expiryDate;
 }
 
-public void setExpiryDate(LocalDate expiryDate) {
+public void setExpiryDate(Date expiryDate) {
 	this.expiryDate = expiryDate;
 }
 
-     
+   
 
 }
