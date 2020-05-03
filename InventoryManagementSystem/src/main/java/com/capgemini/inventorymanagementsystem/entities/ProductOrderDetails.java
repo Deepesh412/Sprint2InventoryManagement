@@ -3,6 +3,7 @@ package com.capgemini.inventorymanagementsystem.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,9 +34,9 @@ public class ProductOrderDetails implements Serializable {
 	@Column(name = "delivery_status")
 	private String deliveryStatus;
 	
-	@OneToOne
-	@JoinColumn(name = "distributor_id", referencedColumnName = "distributor_id")
-    private DistributorDetails distributorId;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="distributor_id", referencedColumnName="distributorDetails")
+	private ProductStock distributorId;
 	
 	@OneToOne
 	@JoinColumn(name="product_id", referencedColumnName="product_id")
@@ -51,7 +52,7 @@ public class ProductOrderDetails implements Serializable {
 
 
 	public ProductOrderDetails(int orderId, int pricePerUnit, int quantityUnit, double totalPrice, Date orderDate,
-			Date deliveryDate, String deliveryStatus, DistributorDetails distributorId, ProductStock productId) {
+			Date deliveryDate, String deliveryStatus, ProductStock distributorId, ProductStock productId) {
 		super();
 		this.orderId = orderId;
 		this.pricePerUnit = pricePerUnit;
@@ -150,13 +151,13 @@ public class ProductOrderDetails implements Serializable {
 
 
 
-	public DistributorDetails getDistributorId() {
+	public ProductStock getDistributorId() {
 		return distributorId;
 	}
 
 
 
-	public void setDistributorId(DistributorDetails distributorId) {
+	public void setDistributorId(ProductStock distributorId) {
 		this.distributorId = distributorId;
 	}
 
@@ -172,8 +173,7 @@ public class ProductOrderDetails implements Serializable {
 		this.productId = productId;
 	}
 
-
-
+	
 	
 }
 

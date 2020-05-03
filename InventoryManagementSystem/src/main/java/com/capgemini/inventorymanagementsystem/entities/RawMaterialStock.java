@@ -3,9 +3,12 @@ package com.capgemini.inventorymanagementsystem.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,18 +31,24 @@ public class RawMaterialStock implements Serializable {
 	@Column(name="expiry_date")
 	private Date expiryDate;
 	
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="supplierdetails", referencedColumnName="supplier_id")
+	private SupplierDetails supplierDetails;
+	
 public RawMaterialStock() {
 		
 	}
 
 public RawMaterialStock(int rawmaterialId, String itemName, double pricePerUnit, Date manufacturingDate,
-		Date expiryDate) {
+		Date expiryDate, SupplierDetails supplierDetails) {
 	super();
 	this.rawmaterialId = rawmaterialId;
 	this.itemName = itemName;
 	this.pricePerUnit = pricePerUnit;
 	this.manufacturingDate = manufacturingDate;
 	this.expiryDate = expiryDate;
+	this.supplierDetails = supplierDetails;
 }
 
 public int getRawmaterialId() {
@@ -82,6 +91,14 @@ public void setExpiryDate(Date expiryDate) {
 	this.expiryDate = expiryDate;
 }
 
-   
+public SupplierDetails getSupplierDetails() {
+	return supplierDetails;
+}
+
+public void setSupplierDetails(SupplierDetails supplierDetails) {
+	this.supplierDetails = supplierDetails;
+}
+
+
 
 }

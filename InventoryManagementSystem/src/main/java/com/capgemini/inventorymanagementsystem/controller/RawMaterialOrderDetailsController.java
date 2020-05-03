@@ -19,7 +19,7 @@ import com.capgemini.inventorymanagementsystem.service.RawMaterialOrderDetailsSe
 
 @RestController
 @RequestMapping("/rawmaterialorderdetails")
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 public class RawMaterialOrderDetailsController {
 
 	@Autowired

@@ -22,6 +22,8 @@ public class DistributorDetails implements Serializable{
 	@Column(name = "email_id")
 	private String emailId;
 	
+	
+	
 	public DistributorDetails()
 	{
 		

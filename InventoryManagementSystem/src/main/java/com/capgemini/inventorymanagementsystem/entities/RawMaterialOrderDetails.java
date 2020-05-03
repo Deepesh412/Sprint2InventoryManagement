@@ -18,13 +18,13 @@ import javax.persistence.Table;
 public class RawMaterialOrderDetails implements Serializable {
 	
 	@Id
-	//@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "order_id")
 	private int orderId;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="supplier_id", referencedColumnName="supplier_id")
-	private SupplierDetails supplierId;
+	@JoinColumn(name="supplier_id", referencedColumnName="supplierDetails")
+	private RawMaterialStock supplierId;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="rawmaterial_id", referencedColumnName="raw_material_id")
@@ -50,7 +50,7 @@ public class RawMaterialOrderDetails implements Serializable {
 	}
 
 
-	public RawMaterialOrderDetails(int orderId, SupplierDetails supplierId, RawMaterialStock rawmaterialId,
+	public RawMaterialOrderDetails(int orderId, RawMaterialStock supplierId, RawMaterialStock rawmaterialId,
 			int pricePerUnit, int quantityUnit, double totalPrice, Date orderDate, Date deliveryDate,
 			String deliveryStatus) {
 		super();
@@ -76,12 +76,12 @@ public class RawMaterialOrderDetails implements Serializable {
 	}
 
 
-	public SupplierDetails getSupplierId() {
+	public RawMaterialStock getSupplierId() {
 		return supplierId;
 	}
 
 
-	public void setSupplierId(SupplierDetails supplierId) {
+	public void setSupplierId(RawMaterialStock supplierId) {
 		this.supplierId = supplierId;
 	}
 
@@ -154,7 +154,8 @@ public class RawMaterialOrderDetails implements Serializable {
 	public void setDeliveryStatus(String deliveryStatus) {
 		this.deliveryStatus = deliveryStatus;
 	}
-     
+
+
 	
 }
 
