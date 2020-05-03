@@ -21,34 +21,10 @@ public class ProductStockServiceImpl implements ProductStockService {
 	public ProductStock addProductStock(ProductStock p) {
 		return pdao.save(p);
 	}
-
-	@Override
-	public ProductStock viewProductStock(int productId) {
-		return pdao.findById(productId).get();
-	}
-
+	
 	@Override
 	public List<ProductStock> viewProductStock() {
 		return pdao.findAll();
-	}
-
-	@Override
-	public ProductStock modifyProductStock(ProductStock p) {
-		  ProductStock ps = pdao.findById(p.getProductId()).get();
-		  if(ps!=null)
-		  {
-			  ps.setManufacturingDate(p.getManufacturingDate());
-			  ps.setExpiryDate(p.getExpiryDate());
-			  ps.setPricePerUnit(p.getPricePerUnit());
-			  
-		  }
-		  return pdao.save(ps);
-	}
-
-	@Override
-	public void deleteProductStock(int productId) {
-		
-		pdao.deleteById(productId);
 	}
 
 }

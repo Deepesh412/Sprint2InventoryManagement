@@ -23,11 +23,6 @@ public class RawMaterialStockServiceimpl implements RawMaterialStockService {
 	}
 
 	@Override
-	public RawMaterialStock viewRawMaterialStock(int rawmaterialId) {
-		return rdao.findById(rawmaterialId).get();
-	}
-
-	@Override
 	public List<RawMaterialStock> viewRawMaterialStock() {
 		return rdao.findAll();
 	}

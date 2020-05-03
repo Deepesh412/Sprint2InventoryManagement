@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class ProductOrderDetails implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue
 	@Column(name = "order_id")
 	private int orderId;
 	@Column(name = "price_per_unit")

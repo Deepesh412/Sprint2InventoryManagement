@@ -7,9 +7,9 @@ import com.capgemini.inventorymanagementsystem.entities.ProductStock;
 
 public interface ProductOrderDetailsService {
 
-	public ProductOrderDetails addProductOrderDetails(ProductOrderDetails po, ProductStock p); 
+	public ProductOrderDetails addProductOrderDetails(ProductOrderDetails po); 
 
-	 public ProductOrderDetails viewProductOrderDetails(int orderId);
+	 public ProductOrderDetails viewProductOrderDetailsById(int orderId);
 	 
 	 public List<ProductOrderDetails> viewProductOrderDetails();
 	 

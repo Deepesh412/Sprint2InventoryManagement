@@ -48,7 +48,7 @@ public class RawMaterialOrderDetailsServiceImpl implements RawMaterialOrderDetai
 	}
 
 	@Override
-	public RawMaterialOrderDetails viewRawMaterialOrderDetails(int orderId) {
+	public RawMaterialOrderDetails viewRawMaterialOrderDetailsById(int orderId) {
 		
 		return rdao.findById(orderId).get();
 	}

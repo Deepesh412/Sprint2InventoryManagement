@@ -3,6 +3,7 @@ package com.capgemini.inventorymanagementsystem.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.capgemini.inventorymanagementsystem.service.DistributorDetailsService
 
 @RestController
 @RequestMapping("/distributor")
+@CrossOrigin("http://localhost:4200")
 public class DistributorDetailsController {
 
 	@Autowired
@@ -33,7 +35,7 @@ public class DistributorDetailsController {
 	@GetMapping(value="/getdistributordetails/{distributorId}",produces="application/json")
     public DistributorDetails viewDistributorDetails(@PathVariable int distributorId)
     {
-   	 return distributorservice.viewDistributorDetails(distributorId);
+   	 return distributorservice.viewDistributorDetailsById(distributorId);
     }
 	
 	@GetMapping(value="/getalldistributordetails",produces="application/json")

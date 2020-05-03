@@ -23,7 +23,7 @@ public class DistributorDetailsServiceImpl implements DistributorDetailsService 
 	}
 
 	@Override
-	public DistributorDetails viewDistributorDetails(int distributorId) {
+	public DistributorDetails viewDistributorDetailsById(int distributorId) {
 		return ddao.findById(distributorId).get();
 	}
 

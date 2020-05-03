@@ -22,10 +22,10 @@ public class ProductOrderDetailsServiceImpl implements ProductOrderDetailsServic
 	ProductOrderDetailsRepository pdao;
 	
 	@Override
-	public ProductOrderDetails addProductOrderDetails(ProductOrderDetails po, ProductStock p) {
+	public ProductOrderDetails addProductOrderDetails(ProductOrderDetails po) {
 		
 		int quan = po.getQuantityUnit();
-		double uniprice = p.getPricePerUnit();
+		double uniprice = po.getPricePerUnit();
 		po.setTotalPrice(uniprice*quan);
 		
 		
@@ -49,7 +49,7 @@ public class ProductOrderDetailsServiceImpl implements ProductOrderDetailsServic
 
 
 	@Override
-	public ProductOrderDetails viewProductOrderDetails(int orderId) {
+	public ProductOrderDetails viewProductOrderDetailsById(int orderId) {
 		
 		return pdao.findById(orderId).get();
 	}

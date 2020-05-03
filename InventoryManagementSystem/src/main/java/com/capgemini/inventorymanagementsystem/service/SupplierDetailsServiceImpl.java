@@ -23,7 +23,7 @@ public class SupplierDetailsServiceImpl implements SupplierDetailsService {
 	}
 
 	@Override
-	public SupplierDetails viewSupplierDetails(int supplierId) {
+	public SupplierDetails viewSupplierDetailsById(int supplierId) {
 		
 	    return sdao.findById(supplierId).get();
 	}

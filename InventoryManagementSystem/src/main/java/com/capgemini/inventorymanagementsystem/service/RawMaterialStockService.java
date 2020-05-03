@@ -8,8 +8,6 @@ public interface RawMaterialStockService {
 
 	public RawMaterialStock addRawMaterialStock(RawMaterialStock r);
 	
-	public RawMaterialStock viewRawMaterialStock(int rawmaterialId);
-	
 	public List<RawMaterialStock> viewRawMaterialStock();
 	 
 	public RawMaterialStock modifyRawMaterialStock(RawMaterialStock r);

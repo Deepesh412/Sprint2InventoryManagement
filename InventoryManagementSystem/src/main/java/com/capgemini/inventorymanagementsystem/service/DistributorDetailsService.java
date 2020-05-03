@@ -8,7 +8,7 @@ public interface DistributorDetailsService {
 
 	public DistributorDetails addDistributorDetails(DistributorDetails distributordetails);
 	
-	public DistributorDetails viewDistributorDetails(int distributorId);
+	public DistributorDetails viewDistributorDetailsById(int distributorId);
 
 	public List<DistributorDetails> viewDistributorDetails();
 }

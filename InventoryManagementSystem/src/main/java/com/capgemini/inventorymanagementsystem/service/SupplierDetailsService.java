@@ -8,7 +8,7 @@ public interface SupplierDetailsService {
 
 	public SupplierDetails addSupplierDetails(SupplierDetails s); 
 	
-	public SupplierDetails viewSupplierDetails(int supplierId);
+	public SupplierDetails viewSupplierDetailsById(int supplierId);
 	
 	public List<SupplierDetails> viewSupplierDetails();
 }
