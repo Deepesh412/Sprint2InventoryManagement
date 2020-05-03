@@ -18,7 +18,7 @@ import com.capgemini.inventorymanagementsystem.service.ProductStockService;
 
 @RestController
 @RequestMapping("/productstock")
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 public class ProductStockController {
 
 	@Autowired

@@ -25,10 +25,10 @@ public class RawMaterialOrderDetailsController {
 	@Autowired
 	RawMaterialOrderDetailsService orderservice;
 	
-	@PostMapping(value = "/placerawmaterialorder")
-	public ResponseEntity<String> addRawMaterialOrderDetails(@RequestBody RawMaterialOrderDetails rmo)
+	@PostMapping(value = "/placerawmaterialorder/{rawmaterialId}")
+	public ResponseEntity<String> addRawMaterialOrderDetails(@RequestBody RawMaterialOrderDetails rmo,@PathVariable int rawmaterialId)
 	{	
-		RawMaterialOrderDetails raw = orderservice.addRawMaterialOrderDetails(rmo);
+		RawMaterialOrderDetails raw = orderservice.addRawMaterialOrderDetails(rmo,rawmaterialId);
 		if(raw == null) {
 			throw new UnsuccessfulOrderException("Unsuccessful in creating order");
 		}

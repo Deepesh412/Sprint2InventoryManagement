@@ -23,15 +23,9 @@ public class RawMaterialOrderDetails implements Serializable {
 	private int orderId;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="supplier_id", referencedColumnName="supplierDetails")
-	private RawMaterialStock supplierId;
-	
-	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="rawmaterial_id", referencedColumnName="raw_material_id")
 	private RawMaterialStock rawmaterialId;
 	
-	@Column(name = "price_per_unit")
-	private int pricePerUnit;
 	@Column(name = "quantity_unit")
 	private int quantityUnit;
 	@Column(name = "total_price")
@@ -50,14 +44,11 @@ public class RawMaterialOrderDetails implements Serializable {
 	}
 
 
-	public RawMaterialOrderDetails(int orderId, RawMaterialStock supplierId, RawMaterialStock rawmaterialId,
-			int pricePerUnit, int quantityUnit, double totalPrice, Date orderDate, Date deliveryDate,
-			String deliveryStatus) {
+	public RawMaterialOrderDetails(int orderId, RawMaterialStock rawmaterialId, int quantityUnit, double totalPrice,
+			Date orderDate, Date deliveryDate, String deliveryStatus) {
 		super();
 		this.orderId = orderId;
-		this.supplierId = supplierId;
 		this.rawmaterialId = rawmaterialId;
-		this.pricePerUnit = pricePerUnit;
 		this.quantityUnit = quantityUnit;
 		this.totalPrice = totalPrice;
 		this.orderDate = orderDate;
@@ -76,16 +67,6 @@ public class RawMaterialOrderDetails implements Serializable {
 	}
 
 
-	public RawMaterialStock getSupplierId() {
-		return supplierId;
-	}
-
-
-	public void setSupplierId(RawMaterialStock supplierId) {
-		this.supplierId = supplierId;
-	}
-
-
 	public RawMaterialStock getRawmaterialId() {
 		return rawmaterialId;
 	}
@@ -93,16 +74,6 @@ public class RawMaterialOrderDetails implements Serializable {
 
 	public void setRawmaterialId(RawMaterialStock rawmaterialId) {
 		this.rawmaterialId = rawmaterialId;
-	}
-
-
-	public int getPricePerUnit() {
-		return pricePerUnit;
-	}
-
-
-	public void setPricePerUnit(int pricePerUnit) {
-		this.pricePerUnit = pricePerUnit;
 	}
 
 

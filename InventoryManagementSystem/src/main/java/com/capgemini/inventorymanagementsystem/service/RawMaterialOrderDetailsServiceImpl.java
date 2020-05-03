@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.inventorymanagementsystem.dao.RawMaterialOrderDetailsRepository;
+import com.capgemini.inventorymanagementsystem.dao.RawMaterialStockRepository;
 import com.capgemini.inventorymanagementsystem.entities.RawMaterialOrderDetails;
 import com.capgemini.inventorymanagementsystem.entities.RawMaterialStock;
 
@@ -20,12 +21,21 @@ public class RawMaterialOrderDetailsServiceImpl implements RawMaterialOrderDetai
 	@Autowired
 	RawMaterialOrderDetailsRepository rdao;
 	
+	@Autowired
+	RawMaterialStockRepository rmdao;
 	
 	@Override
-	public RawMaterialOrderDetails addRawMaterialOrderDetails(RawMaterialOrderDetails rmo) {
+	public RawMaterialOrderDetails addRawMaterialOrderDetails(RawMaterialOrderDetails rmo,int rawmaterialId) {
 	
+		RawMaterialStock r = rmdao.findById(rawmaterialId).get();
+		if(r==null)
+			return null;
+		if(rmo.getRawmaterialId()==null)
+		{
+		//	RawMaterialOrderDetails rm=rdao.save(rmo);
+			rmo.setRawmaterialId(r);
 		int quan = rmo.getQuantityUnit();
-		double unit = rmo.getPricePerUnit();
+		double unit = r.getPricePerUnit();
 		rmo.setTotalPrice(quan*unit);
 		
 		
@@ -40,11 +50,12 @@ public class RawMaterialOrderDetailsServiceImpl implements RawMaterialOrderDetai
 		Date dateofdel = new Date(modifiedDate.getTime());
 		rmo.setDeliveryDate(dateofdel);
 		
-		
-		rmo.setDeliveryStatus("Not dispatched");
 
+		rmo.setDeliveryStatus("Not dispatched");
 		
+		}
 		return rdao.save(rmo);
+
 	}
 
 	@Override

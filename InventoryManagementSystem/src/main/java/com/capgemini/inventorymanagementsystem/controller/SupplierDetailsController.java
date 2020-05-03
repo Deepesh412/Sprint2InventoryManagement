@@ -16,7 +16,7 @@ import com.capgemini.inventorymanagementsystem.service.SupplierDetailsService;
 
 @RestController
 @RequestMapping("/supplier")
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 public class SupplierDetailsController {
 	
 	@Autowired

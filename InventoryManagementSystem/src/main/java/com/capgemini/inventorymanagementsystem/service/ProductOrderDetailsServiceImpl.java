@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.inventorymanagementsystem.dao.ProductOrderDetailsRepository;
+import com.capgemini.inventorymanagementsystem.dao.ProductStockRepository;
 import com.capgemini.inventorymanagementsystem.entities.ProductOrderDetails;
 import com.capgemini.inventorymanagementsystem.entities.ProductStock;
 
@@ -21,11 +22,20 @@ public class ProductOrderDetailsServiceImpl implements ProductOrderDetailsServic
 	@Autowired
 	ProductOrderDetailsRepository pdao;
 	
+	@Autowired
+	ProductStockRepository psdao;
 	@Override
-	public ProductOrderDetails addProductOrderDetails(ProductOrderDetails po) {
+	public ProductOrderDetails addProductOrderDetails(ProductOrderDetails po,int productId ) {
+		
+		ProductStock p = psdao.findById(productId).get();
+		if(p == null)
+			return null;
+		if(po.getProductId()==null)
+		{
+			po.setProductId(p);
 		
 		int quan = po.getQuantityUnit();
-		double uniprice = po.getPricePerUnit();
+		double uniprice = p.getPricePerUnit();
 		po.setTotalPrice(uniprice*quan);
 		
 		
@@ -43,7 +53,7 @@ public class ProductOrderDetailsServiceImpl implements ProductOrderDetailsServic
 	
 		po.setDeliveryStatus("Not dispatched");
 	
-		
+		}
 		return pdao.save(po);
 	}
 

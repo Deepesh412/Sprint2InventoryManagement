@@ -21,16 +21,16 @@ import com.capgemini.inventorymanagementsystem.service.ProductOrderDetailsServic
 
 @RestController
 @RequestMapping("/productorderdetails")
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 public class ProductOrderDetailsController {
 
 	@Autowired
 	ProductOrderDetailsService orderservice;
 	
-	@PostMapping(value = "/addproductorderdetails")
-	public ResponseEntity<String> addProductOrderDetails(@RequestBody ProductOrderDetails po)
+	@PostMapping(value = "/addproductorderdetails/{productId}")
+	public ResponseEntity<String> addProductOrderDetails(@RequestBody ProductOrderDetails po, @PathVariable int productId)
 	{
-		ProductOrderDetails pro = orderservice.addProductOrderDetails(po);
+		ProductOrderDetails pro = orderservice.addProductOrderDetails(po, productId);
 		if(pro == null) {
 			throw new UnsuccessfulOrderException("Onsuccessful in creating order");
 		}

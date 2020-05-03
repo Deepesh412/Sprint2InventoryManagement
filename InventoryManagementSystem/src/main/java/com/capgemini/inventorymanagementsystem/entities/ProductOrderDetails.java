@@ -21,8 +21,7 @@ public class ProductOrderDetails implements Serializable {
 	//@GeneratedValue
 	@Column(name = "order_id")
 	private int orderId;
-	@Column(name = "price_per_unit")
-	private int pricePerUnit;
+
 	@Column(name = "quantity_unit")
 	private int quantityUnit;
 	@Column(name = "total_price")
@@ -34,9 +33,6 @@ public class ProductOrderDetails implements Serializable {
 	@Column(name = "delivery_status")
 	private String deliveryStatus;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="distributor_id", referencedColumnName="distributorDetails")
-	private ProductStock distributorId;
 	
 	@OneToOne
 	@JoinColumn(name="product_id", referencedColumnName="product_id")
@@ -51,17 +47,15 @@ public class ProductOrderDetails implements Serializable {
 
 
 
-	public ProductOrderDetails(int orderId, int pricePerUnit, int quantityUnit, double totalPrice, Date orderDate,
-			Date deliveryDate, String deliveryStatus, ProductStock distributorId, ProductStock productId) {
+	public ProductOrderDetails(int orderId, int quantityUnit, double totalPrice, Date orderDate, Date deliveryDate,
+			String deliveryStatus, ProductStock productId) {
 		super();
 		this.orderId = orderId;
-		this.pricePerUnit = pricePerUnit;
 		this.quantityUnit = quantityUnit;
 		this.totalPrice = totalPrice;
 		this.orderDate = orderDate;
 		this.deliveryDate = deliveryDate;
 		this.deliveryStatus = deliveryStatus;
-		this.distributorId = distributorId;
 		this.productId = productId;
 	}
 
@@ -75,18 +69,6 @@ public class ProductOrderDetails implements Serializable {
 
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
-	}
-
-
-
-	public int getPricePerUnit() {
-		return pricePerUnit;
-	}
-
-
-
-	public void setPricePerUnit(int pricePerUnit) {
-		this.pricePerUnit = pricePerUnit;
 	}
 
 
@@ -151,18 +133,6 @@ public class ProductOrderDetails implements Serializable {
 
 
 
-	public ProductStock getDistributorId() {
-		return distributorId;
-	}
-
-
-
-	public void setDistributorId(ProductStock distributorId) {
-		this.distributorId = distributorId;
-	}
-
-
-
 	public ProductStock getProductId() {
 		return productId;
 	}
@@ -172,6 +142,7 @@ public class ProductOrderDetails implements Serializable {
 	public void setProductId(ProductStock productId) {
 		this.productId = productId;
 	}
+
 
 	
 	

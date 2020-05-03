@@ -23,7 +23,7 @@ import com.capgemini.inventorymanagementsystem.service.UserService;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 public class UserController {
 	 @Autowired
      UserService userservice;
