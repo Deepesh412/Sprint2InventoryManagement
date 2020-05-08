@@ -19,16 +19,16 @@ import com.capgemini.inventorymanagementsystem.service.RawMaterialOrderDetailsSe
 
 @RestController
 @RequestMapping("/rawmaterialorderdetails")
-//@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://localhost:4200")
 public class RawMaterialOrderDetailsController {
 
 	@Autowired
 	RawMaterialOrderDetailsService orderservice;
 	
-	@PostMapping(value = "/placerawmaterialorder/{rawmaterialId}")
-	public ResponseEntity<String> addRawMaterialOrderDetails(@RequestBody RawMaterialOrderDetails rmo,@PathVariable int rawmaterialId)
+	@PostMapping(value = "/placerawmaterialorder")
+	public ResponseEntity<String> addRawMaterialOrderDetails(@RequestBody RawMaterialOrderDetails rmo)
 	{	
-		RawMaterialOrderDetails raw = orderservice.addRawMaterialOrderDetails(rmo,rawmaterialId);
+		RawMaterialOrderDetails raw = orderservice.addRawMaterialOrderDetails(rmo);
 		if(raw == null) {
 			throw new UnsuccessfulOrderException("Unsuccessful in creating order");
 		}
@@ -53,18 +53,5 @@ public class RawMaterialOrderDetailsController {
     }
 	
 	
-/*	 @DeleteMapping("/deleterawmaterialorderdetail/{orderId}")
-     public String deleteRawMaterialOrderDetails(@PathVariable int orderId)
-     {
-    	 orderservice.deleteRawMaterialOrderDetails(orderId);
-    	 return "RawMaterial order Details Deleted";
-     }
-    
-	 
-     @PutMapping("/updaterawmaterialorderdetails")
-     public RawMaterialOrderDetails modifyRawMaterialOrderDetails(@RequestBody RawMaterialOrderDetails rmo,PlaceAnRMOrder plo)
-     {
-    	 return orderservice.modifyRawMaterialOrderDetails(rmo, plo);
-     }*/
 }
 

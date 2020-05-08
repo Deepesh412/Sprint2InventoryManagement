@@ -15,22 +15,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.inventorymanagementsystem.entities.ProductOrderDetails;
-import com.capgemini.inventorymanagementsystem.entities.ProductStock;
 import com.capgemini.inventorymanagementsystem.exceptions.UnsuccessfulOrderException;
 import com.capgemini.inventorymanagementsystem.service.ProductOrderDetailsService;
 
 @RestController
 @RequestMapping("/productorderdetails")
-//@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://localhost:4200")
 public class ProductOrderDetailsController {
 
 	@Autowired
 	ProductOrderDetailsService orderservice;
 	
-	@PostMapping(value = "/addproductorderdetails/{productId}")
-	public ResponseEntity<String> addProductOrderDetails(@RequestBody ProductOrderDetails po, @PathVariable int productId)
+	
+	
+	@PostMapping(value = "/addproductorderdetails")
+	public ResponseEntity<String> addProductOrderDetails(@RequestBody ProductOrderDetails po)
 	{
-		ProductOrderDetails pro = orderservice.addProductOrderDetails(po, productId);
+		ProductOrderDetails pro = orderservice.addProductOrderDetails(po);
 		if(pro == null) {
 			throw new UnsuccessfulOrderException("Onsuccessful in creating order");
 		}
@@ -55,18 +56,5 @@ public class ProductOrderDetailsController {
     }
 	
 	
-	/* @DeleteMapping("/deleterawmaterialorderdetail/{orderId}")
-     public String deleteProductOrderDetails(@PathVariable int orderId)
-     {
-    	 orderservice.deleteProductOrderDetails(orderId);
-    	 return "product order Details Deleted";
-     }
-    
-	 
-     @PutMapping("/updateproductorderdetails")
-     public ProductOrderDetails modifyProductOrderDetails(@RequestBody ProductOrderDetails po)
-     {
-    	 return orderservice.modifyProductOrderDetails(po);
-     }*/
 }
 

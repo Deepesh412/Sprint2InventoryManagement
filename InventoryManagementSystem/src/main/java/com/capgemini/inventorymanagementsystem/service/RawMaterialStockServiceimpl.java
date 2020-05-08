@@ -27,23 +27,4 @@ public class RawMaterialStockServiceimpl implements RawMaterialStockService {
 		return rdao.findAll();
 	}
 
-	@Override
-	public RawMaterialStock modifyRawMaterialStock(RawMaterialStock r) {
-
-		  RawMaterialStock rm = rdao.findById(r.getRawmaterialId()).get();
-		  if(rm!=null)
-		  {
-			  rm.setManufacturingDate(r.getManufacturingDate());
-	     	  rm.setExpiryDate(r.getExpiryDate());
-	     	  rm.setPricePerUnit(r.getPricePerUnit());
-		  }
-		  return rdao.save(rm);
-	  }
-
-	@Override
-	public void deleteRawMaterialStock(int rawmaterialId) {
-		
-		rdao.deleteById(rawmaterialId);
-	}
-
 }

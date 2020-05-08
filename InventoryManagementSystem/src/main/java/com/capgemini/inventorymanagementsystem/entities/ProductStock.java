@@ -1,7 +1,6 @@
 package com.capgemini.inventorymanagementsystem.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -19,12 +18,16 @@ public class ProductStock implements Serializable{
 	@Id
 	@Column(name = "product_id")
 	private int productId;
+	
 	@Column(name = "item_name")
 	private String itemName;
+	
 	@Column(name = "price_per_unit")
 	private double pricePerUnit;
+	
 	@Column(name="manufacturing_date")
 	private Date manufacturingDate;
+	
 	@Column(name="expiry_date")
 	private Date expiryDate;
 	

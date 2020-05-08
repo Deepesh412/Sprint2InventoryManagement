@@ -10,8 +10,5 @@ public interface RawMaterialStockService {
 	
 	public List<RawMaterialStock> viewRawMaterialStock();
 	 
-	public RawMaterialStock modifyRawMaterialStock(RawMaterialStock r);
-	
-	 public void deleteRawMaterialStock(int rawmaterialId);
 	 
 }

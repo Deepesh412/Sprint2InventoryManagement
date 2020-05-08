@@ -13,12 +13,16 @@ public class DistributorDetails implements Serializable{
 	@Id
 	@Column(name ="distributor_id")
 	private int distributorId;
+	
 	@Column(name = "distributor_name")
 	private String distributorName;
+	
 	@Column(name = "address")
 	private String address;
+	
 	@Column(name = "phone_number")
 	private long phonenumber;
+	
 	@Column(name = "email_id")
 	private String emailId;
 	

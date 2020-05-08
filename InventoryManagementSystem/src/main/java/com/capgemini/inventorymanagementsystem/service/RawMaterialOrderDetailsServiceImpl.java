@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.inventorymanagementsystem.dao.RawMaterialOrderDetailsRepository;
-import com.capgemini.inventorymanagementsystem.dao.RawMaterialStockRepository;
 import com.capgemini.inventorymanagementsystem.entities.RawMaterialOrderDetails;
-import com.capgemini.inventorymanagementsystem.entities.RawMaterialStock;
 
 @Service
 @Transactional
@@ -21,21 +19,13 @@ public class RawMaterialOrderDetailsServiceImpl implements RawMaterialOrderDetai
 	@Autowired
 	RawMaterialOrderDetailsRepository rdao;
 	
-	@Autowired
-	RawMaterialStockRepository rmdao;
 	
 	@Override
-	public RawMaterialOrderDetails addRawMaterialOrderDetails(RawMaterialOrderDetails rmo,int rawmaterialId) {
+	public RawMaterialOrderDetails addRawMaterialOrderDetails(RawMaterialOrderDetails rmo) {
 	
-		RawMaterialStock r = rmdao.findById(rawmaterialId).get();
-		if(r==null)
-			return null;
-		if(rmo.getRawmaterialId()==null)
-		{
-		//	RawMaterialOrderDetails rm=rdao.save(rmo);
-			rmo.setRawmaterialId(r);
+		
 		int quan = rmo.getQuantityUnit();
-		double unit = r.getPricePerUnit();
+		double unit = rmo.getPricePerUnit();
 		rmo.setTotalPrice(quan*unit);
 		
 		
@@ -53,7 +43,7 @@ public class RawMaterialOrderDetailsServiceImpl implements RawMaterialOrderDetai
 
 		rmo.setDeliveryStatus("Not dispatched");
 		
-		}
+		
 		return rdao.save(rmo);
 
 	}
@@ -70,31 +60,5 @@ public class RawMaterialOrderDetailsServiceImpl implements RawMaterialOrderDetai
 		return rdao.findAll();
 	}
 
-/*	@Override
-	public RawMaterialOrderDetails modifyRawMaterialOrderDetails(RawMaterialOrderDetails rmo, PlaceAnRMOrder plo) {
-		
-		RawMaterialOrderDetails rm = rdao.findById(rmo.getOrderId()).get();
-		if(rm!=null)
-		{
-			int quan = plo.getQuantityUnit();
-			double unit = rmo.getPricePerUnit();
-			rmo.setTotalPrice(quan*unit);
-			
-			rm.setDeliveryDate(rmo.getDeliveryDate());
-			rm.setOrderDate(rmo.getOrderDate());
-			rm.setDeliveryStatus(rmo.getDeliveryStatus());
-		
-		}
-		
-		return rdao.save(rm);
-	}
-
-	@Override
-	public void deleteRawMaterialOrderDetails(int orderId) {
-
-		rdao.deleteById(orderId);
-	}
-*/
-	
 
 }

@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.inventorymanagementsystem.dao.ProductOrderDetailsRepository;
-import com.capgemini.inventorymanagementsystem.dao.ProductStockRepository;
 import com.capgemini.inventorymanagementsystem.entities.ProductOrderDetails;
-import com.capgemini.inventorymanagementsystem.entities.ProductStock;
 
 @Service
 @Transactional
@@ -22,20 +20,12 @@ public class ProductOrderDetailsServiceImpl implements ProductOrderDetailsServic
 	@Autowired
 	ProductOrderDetailsRepository pdao;
 	
-	@Autowired
-	ProductStockRepository psdao;
 	@Override
-	public ProductOrderDetails addProductOrderDetails(ProductOrderDetails po,int productId ) {
+	public ProductOrderDetails addProductOrderDetails(ProductOrderDetails po) {
 		
-		ProductStock p = psdao.findById(productId).get();
-		if(p == null)
-			return null;
-		if(po.getProductId()==null)
-		{
-			po.setProductId(p);
 		
 		int quan = po.getQuantityUnit();
-		double uniprice = p.getPricePerUnit();
+		double uniprice = po.getPricePerUnit();
 		po.setTotalPrice(uniprice*quan);
 		
 		
@@ -53,7 +43,7 @@ public class ProductOrderDetailsServiceImpl implements ProductOrderDetailsServic
 	
 		po.setDeliveryStatus("Not dispatched");
 	
-		}
+		
 		return pdao.save(po);
 	}
 
@@ -71,27 +61,6 @@ public class ProductOrderDetailsServiceImpl implements ProductOrderDetailsServic
 	}
 
 	
-	/*@Override
-	public ProductOrderDetails modifyProductOrderDetails(ProductOrderDetails po) {
-		
-		ProductOrderDetails pd = pdao.findById(po.getOrderId()).get();
-		if(pd!=null)
-		{
-			pd.setDeliveryDate(po.getDeliveryDate());
-			pd.setOrderDate(po.getOrderDate());
-			pd.setDeliveryStatus(po.getDeliveryStatus());
-			pd.setPricePerUnit(po.getPricePerUnit());
-			pd.setQuantityUnit(po.getQuantityUnit());
-			
-		}
-		
-		return pdao.save(pd);
-	}
-
-	@Override
-	public void deleteProductOrderDetails(int orderId) {
-
-		pdao.deleteById(orderId);
-	}*/
+	
 
 }

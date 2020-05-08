@@ -3,14 +3,9 @@ package com.capgemini.inventorymanagementsystem.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,43 +17,54 @@ public class ProductOrderDetails implements Serializable {
 	@Column(name = "order_id")
 	private int orderId;
 
+	@Column(name = "product_id")
+	private int productId;
+	
+	@Column(name = "distributor_id")
+	private int distributorId;
+	
+	@Column(name = "price_per_unit")
+	private double pricePerUnit;
+	
+	@Column(name = "item_name")
+	private String itemName;
+	
 	@Column(name = "quantity_unit")
 	private int quantityUnit;
+	
 	@Column(name = "total_price")
 	private double totalPrice;
+	
 	@Column(name = "order_date")
 	private Date orderDate;
+	
 	@Column(name = "delivery_date")
 	private Date deliveryDate;
+	
 	@Column(name = "delivery_status")
 	private String deliveryStatus;
 	
 	
-	@OneToOne
-	@JoinColumn(name="product_id", referencedColumnName="product_id")
-	private ProductStock productId;
-	
-	
-	
-	public ProductOrderDetails()
+    public ProductOrderDetails()
 	{
 		
 	}
 
 
-
-	public ProductOrderDetails(int orderId, int quantityUnit, double totalPrice, Date orderDate, Date deliveryDate,
-			String deliveryStatus, ProductStock productId) {
+	public ProductOrderDetails(int orderId, int productId, int distributorId, double pricePerUnit, String itemName,
+			int quantityUnit, double totalPrice, Date orderDate, Date deliveryDate, String deliveryStatus) {
 		super();
 		this.orderId = orderId;
+		this.productId = productId;
+		this.distributorId = distributorId;
+		this.pricePerUnit = pricePerUnit;
+		this.itemName = itemName;
 		this.quantityUnit = quantityUnit;
 		this.totalPrice = totalPrice;
 		this.orderDate = orderDate;
 		this.deliveryDate = deliveryDate;
 		this.deliveryStatus = deliveryStatus;
-		this.productId = productId;
 	}
-
 
 
 	public int getOrderId() {
@@ -66,11 +72,49 @@ public class ProductOrderDetails implements Serializable {
 	}
 
 
-
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
 
+
+	public int getProductId() {
+		return productId;
+	}
+
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+
+	public int getDistributorId() {
+		return distributorId;
+	}
+
+
+	public void setDistributorId(int distributorId) {
+		this.distributorId = distributorId;
+	}
+
+
+	public double getPricePerUnit() {
+		return pricePerUnit;
+	}
+
+
+	public void setPricePerUnit(double pricePerUnit) {
+		this.pricePerUnit = pricePerUnit;
+	}
+
+
+	public String getItemName() {
+		return itemName;
+	}
+
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 
 
 	public int getQuantityUnit() {
@@ -78,11 +122,9 @@ public class ProductOrderDetails implements Serializable {
 	}
 
 
-
 	public void setQuantityUnit(int quantityUnit) {
 		this.quantityUnit = quantityUnit;
 	}
-
 
 
 	public double getTotalPrice() {
@@ -90,11 +132,9 @@ public class ProductOrderDetails implements Serializable {
 	}
 
 
-
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-
 
 
 	public Date getOrderDate() {
@@ -102,11 +142,9 @@ public class ProductOrderDetails implements Serializable {
 	}
 
 
-
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-
 
 
 	public Date getDeliveryDate() {
@@ -114,11 +152,9 @@ public class ProductOrderDetails implements Serializable {
 	}
 
 
-
 	public void setDeliveryDate(Date deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
-
 
 
 	public String getDeliveryStatus() {
@@ -126,21 +162,8 @@ public class ProductOrderDetails implements Serializable {
 	}
 
 
-
 	public void setDeliveryStatus(String deliveryStatus) {
 		this.deliveryStatus = deliveryStatus;
-	}
-
-
-
-	public ProductStock getProductId() {
-		return productId;
-	}
-
-
-
-	public void setProductId(ProductStock productId) {
-		this.productId = productId;
 	}
 
 
